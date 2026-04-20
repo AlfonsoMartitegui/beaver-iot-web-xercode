@@ -19,3 +19,5 @@ origin  https://github.com/AlfonsoMartitegui/beaver-iot-web-xercode.git (push)
 upstream        https://github.com/Milesight-IoT/beaver-iot-web (fetch)
 upstream        https://github.com/Milesight-IoT/beaver-iot-web (push)
 PS E:\DEVELOVEMENTS\2025\XERCODE\IOT\BEAVER\beaver-iot-web> 
+
+pnpm run start      
