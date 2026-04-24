@@ -181,7 +181,7 @@ function FloorPlanWithPopup() {
 | `resizeStep` | `number` | `0.1` | Resize step size in pixels (max: 5) |
 | `showAlignmentGuides` | `boolean` | `true` | Show alignment guides when dragging |
 | `alignmentThreshold` | `number` | `5` | Alignment guide threshold in pixels |
-| `alignmentLineColor` | `string` | `'#8e66ff'` | Alignment guide line color |
+| `alignmentLineColor` | `string` | `'#334e9d'` | Alignment guide line color |
 | `enablePopup` | `boolean` | `false` | Enable marker popup (disabled in edit mode) |
 | `popupTrigger` | `'hover' \| 'click'` | `'hover'` | Popup trigger type |
 | `renderPopup` | `(marker: Marker<T>) => ReactNode` | - | Custom popup content renderer |

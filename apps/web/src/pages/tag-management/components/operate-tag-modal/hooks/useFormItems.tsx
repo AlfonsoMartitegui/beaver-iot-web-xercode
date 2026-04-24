@@ -77,7 +77,7 @@ export function useFormItems() {
                                 error={!!error}
                                 defaultColors={[
                                     '#4E5969',
-                                    '#7B4EFA',
+                                    '#334E9D',
                                     '#3491FA',
                                     '#26C6DA',
                                     '#1EBA62',

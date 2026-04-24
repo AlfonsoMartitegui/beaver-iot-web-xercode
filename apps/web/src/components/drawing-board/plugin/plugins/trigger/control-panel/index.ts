@@ -76,7 +76,7 @@ const triggerControlPanelConfig = (): ControlPanelConfig<TriggerControlPanelConf
                             componentProps: {
                                 defaultValue: {
                                     icon: 'AdsClickIcon',
-                                    color: '#8E66FF',
+                                    color: '#334E9D',
                                 },
                                 legacyIconKey: 'icon',
                                 legacyColorKey: 'bgColor',

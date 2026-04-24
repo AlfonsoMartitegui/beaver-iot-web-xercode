@@ -50,7 +50,7 @@ function FacebookCircularProgress(props: CircularProgressProps) {
                 variant="indeterminate"
                 disableShrink
                 sx={{
-                    color: '#8e66ff',
+                    color: '#334e9d',
                     animationDuration: '550ms',
                     position: 'absolute',
                     left: 0,

@@ -162,7 +162,7 @@ export interface ImageMarkerProps<T = unknown> {
     showAlignmentGuides?: boolean;
     /** Alignment guide threshold in pixels (default: 5) */
     alignmentThreshold?: number;
-    /** Alignment guide line color (default: '#8e66ff') */
+    /** Alignment guide line color (default: '#334e9d') */
     alignmentLineColor?: string;
     /** Enable marker popup (default: false) */
     enablePopup?: boolean;

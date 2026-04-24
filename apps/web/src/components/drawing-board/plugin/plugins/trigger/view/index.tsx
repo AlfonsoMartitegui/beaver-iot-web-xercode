@@ -241,7 +241,7 @@ const View = (props: Props) => {
         <div
             className={isPreview ? 'trigger-view-preview' : 'trigger-view'}
             style={{
-                backgroundColor: get(config, 'appearanceIcon.color', bgColor || '#8E66FF'),
+                backgroundColor: get(config, 'appearanceIcon.color', bgColor || '#334E9D'),
             }}
             onClick={handleClick}
         >

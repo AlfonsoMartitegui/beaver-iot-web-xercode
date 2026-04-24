@@ -110,7 +110,7 @@ const switchControlPanelConfig = (): ControlPanelConfig<SwitchControlPanelConfig
                             componentProps: {
                                 defaultValue: {
                                     icon: 'WifiIcon',
-                                    color: '#8E66FF',
+                                    color: '#334E9D',
                                 },
                                 legacyIconKey: 'onIcon',
                                 legacyColorKey: 'onIconColor',

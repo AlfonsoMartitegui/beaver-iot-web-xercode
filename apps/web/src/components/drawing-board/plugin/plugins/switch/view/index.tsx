@@ -111,7 +111,7 @@ const View = (props: ViewProps) => {
      */
     const iconColor = useMemo(() => {
         return isSwitchOn
-            ? get(config, 'onAppearanceIcon.color', onIconColor || '#8E66FF')
+            ? get(config, 'onAppearanceIcon.color', onIconColor || '#334E9D')
             : get(config, 'offAppearanceIcon.color', offIconColor || '#9B9B9B');
     }, [isSwitchOn, onIconColor, offIconColor, config]);
 

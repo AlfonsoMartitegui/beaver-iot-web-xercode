@@ -57,7 +57,7 @@ const TOOLTIP_DISTANCE_THRESHOLD = {
 const Y_AXIS_UNIT_FONT =
     "12px '-apple-system', 'Helvetica Neue', 'PingFang SC', 'SegoeUI', 'Noto Sans CJK SC', sans-serif, 'Helvetica', 'Microsoft YaHei', '微软雅黑', 'Arial'";
 
-const DATA_ZOOM_COLOR = '#7b4efa';
+const DATA_ZOOM_COLOR = '#334e9d';
 const DATA_ZOOM_BORDER_COLOR = '#E5E6EB';
 
 const LEGEND_CONFIG = {

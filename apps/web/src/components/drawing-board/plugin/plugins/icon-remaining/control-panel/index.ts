@@ -109,7 +109,7 @@ const iconRemainingControlPanelConfig = (): ControlPanelConfig<IconRemainingCont
                             componentProps: {
                                 defaultValue: {
                                     icon: 'DeleteIcon',
-                                    color: '#7B4EFA',
+                                    color: '#334E9D',
                                 },
                                 legacyIconKey: 'icon',
                                 legacyColorKey: 'iconColor',

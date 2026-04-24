@@ -53,7 +53,7 @@ const ImageMarkerKonva = <T extends Record<string, any> = Record<string, any>>(
         resizeStep = 1,
         showAlignmentGuides = true,
         alignmentThreshold = 5,
-        alignmentLineColor = '#8e66ff',
+        alignmentLineColor = '#334e9d',
         enablePopup = false,
         popupTrigger = 'hover',
         renderPopup,
@@ -875,8 +875,8 @@ const ImageMarkerKonva = <T extends Record<string, any> = Record<string, any>>(
                             // borderEnabled={false}
                             anchorSize={6}
                             borderStrokeWidth={1}
-                            borderStroke="#8e66ff"
-                            anchorStroke="#8e66ff"
+                            borderStroke="#334e9d"
+                            anchorStroke="#334e9d"
                             rotateEnabled={false}
                             enabledAnchors={[
                                 'top-left',

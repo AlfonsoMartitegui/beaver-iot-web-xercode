@@ -197,7 +197,7 @@ const View = (props: ViewProps) => {
                     fillerColor: 'rgba(123, 78, 250, 0.15)',
                     showDetail: false,
                     moveHandleStyle: {
-                        color: '#7b4efa',
+                        color: '#334e9d',
                         opacity: 0.16,
                     },
                     emphasis: {
@@ -205,33 +205,33 @@ const View = (props: ViewProps) => {
                             show: true,
                         },
                         moveHandleStyle: {
-                            color: '#7b4efa',
+                            color: '#334e9d',
                             opacity: 1,
                         },
                     },
                     borderColor: '#E5E6EB',
                     dataBackground: {
                         lineStyle: {
-                            color: '#7b4efa',
+                            color: '#334e9d',
                             opacity: 0.36,
                         },
                         areaStyle: {
-                            color: '#7b4efa',
+                            color: '#334e9d',
                             opacity: 0.08,
                         },
                     },
                     selectedDataBackground: {
                         lineStyle: {
-                            color: '#7b4efa',
+                            color: '#334e9d',
                             opacity: 0.8,
                         },
                         areaStyle: {
-                            color: '#7b4efa',
+                            color: '#334e9d',
                             opacity: 0.2,
                         },
                     },
                     brushStyle: {
-                        color: '#7b4efa',
+                        color: '#334e9d',
                         opacity: 0.16,
                     },
                 },

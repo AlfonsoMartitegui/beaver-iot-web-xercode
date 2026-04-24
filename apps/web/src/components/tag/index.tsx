@@ -7,7 +7,7 @@ import colorMix from '@milesight/shared/src/utils/color-mix';
 import Tooltip from '../tooltip';
 
 export interface TagProps extends ChipProps {
-    /** Any color value, eg: #7B4EFA */
+    /** Any color value, eg: #334E9D */
     arbitraryColor?: string;
     /** Hover for 1 second to display description tip */
     tip?: string;
@@ -17,10 +17,10 @@ export interface TagProps extends ChipProps {
  * Tag Component
  *
  * @example
- * <Tag label="Tag Name" arbitraryColor="#7B4EFA" tip="hello world" />
+ * <Tag label="Tag Name" arbitraryColor="#334E9D" tip="hello world" />
  */
 const Tag: React.FC<TagProps> = props => {
-    const { arbitraryColor = '#7B4EFA', tip, sx, ...restProps } = props;
+    const { arbitraryColor = '#334E9D', tip, sx, ...restProps } = props;
 
     const getBackgroundColor = useMemo(() => {
         if (!arbitraryColor || !validHex(arbitraryColor)) return {};

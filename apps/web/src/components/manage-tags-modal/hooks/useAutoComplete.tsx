@@ -37,7 +37,7 @@ export function useAutoComplete(props: {
         const allOption: TagProps = {
             id: ALL_OPTION.value,
             name: getIntlText(ALL_OPTION.label),
-            color: '#7B4EFA',
+            color: '#334E9D',
         };
 
         if (currentAction === TagOperationEnums.REMOVE) {
