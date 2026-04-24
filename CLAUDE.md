@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Xercode IoT Web is a monorepo-based IoT platform frontend built with React, TypeScript, and Vite. It uses pnpm workspaces to manage multiple packages and applications focused on device management, dashboards, integrations, and workflow automation.
+Beaver IoT Web is a monorepo-based IoT platform frontend built with React, TypeScript, and Vite. It uses pnpm workspaces to manage multiple packages and applications focused on device management, dashboards, integrations, and workflow automation.
 
 ## Development Commands
 

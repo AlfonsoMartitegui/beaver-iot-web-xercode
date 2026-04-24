@@ -1,6 +1,6 @@
-# Xercode IoT Web
+# Beaver IoT Web
 
-This project is the Xercode IoT Web application, built upon the following core technologies:
+This project is the Beaver IoT Web application, built upon the following core technologies:
 
 - View Library: React
 - Request Library: Axios

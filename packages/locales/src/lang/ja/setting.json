@@ -1,5 +1,5 @@
 {
-    "setting.blueprint.desc_local_upload": "アップロードしたファイルの内容がXercode IoTの必須解析形式に準拠していることを確認してください",
+    "setting.blueprint.desc_local_upload": "アップロードしたファイルの内容がBeaver IoTの必須解析形式に準拠していることを確認してください",
     "setting.blueprint.desc_official_store": "新しいバージョンが利用可能になったら自動的に更新します。更新には3分もかかりません。",
     "setting.blueprint.edit_modal_title": "ソースの編集",
     "setting.blueprint.label_sync_result": "更新結果の取得",
@@ -7,7 +7,7 @@
     "setting.blueprint.message_sync_failed": "更新に失敗しました。リポジトリにアクセスできるか確認してください。",
     "setting.blueprint.message_sync_success": "すでに最新バージョンです",
     "setting.blueprint.official_store_helper_text": "初期設定：3時間ごとに公式リポジトリを確認し、最新版を自動適用します。手動アップロードへの変更は、右側の [編集] ボタンから行えます。",
-    "setting.blueprint.title_official_store": "Xercode IoT 公式ブループリントリポジトリ",
+    "setting.blueprint.title_official_store": "Beaver IoT 公式ブループリントリポジトリ",
     "setting.credentials.edit_http": "HTTP認証情報の編集",
     "setting.credentials.edit_mqtt": "MQTT認証情報の編集",
     "setting.credentials.edit_smtp": "SMTP設定の編集",

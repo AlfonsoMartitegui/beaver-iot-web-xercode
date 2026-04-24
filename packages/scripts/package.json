@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "private": true,
     "license": "MIT",
-    "description": "Xercode IoT Assistant scripts",
+    "description": "Beaver IoT Assistant scripts",
     "main": "dist/index.cjs",
     "module": "dist/index.js",
     "typings": "dist/index.d.ts",

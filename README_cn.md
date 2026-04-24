@@ -1,6 +1,6 @@
-# Xercode IoT Web
+# Beaver IoT Web
 
-Xercode IoT Web 是基于 Monorepo 的前端项目，包含了 Web 应用及其依赖的构建脚本、项目规范、国际化、公共代码等子库，利用 Pnpm Workspace 进行管理，提供了统一的开发环境和构建流程，方便开发和维护。
+Beaver IoT Web 是基于 Monorepo 的前端项目，包含了 Web 应用及其依赖的构建脚本、项目规范、国际化、公共代码等子库，利用 Pnpm Workspace 进行管理，提供了统一的开发环境和构建流程，方便开发和维护。
 
 ## 目录结构
 

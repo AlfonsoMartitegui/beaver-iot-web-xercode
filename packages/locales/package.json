@@ -1,7 +1,7 @@
 {
     "name": "@milesight/locales",
     "version": "0.0.1",
-    "description": "Xercode IoT Project internationalization Copy & Toolkit",
+    "description": "Beaver IoT Project internationalization Copy & Toolkit",
     "main": "./dist/index.js",
     "module": "dist/index.js",
     "types": "./dist/index.d.ts",
