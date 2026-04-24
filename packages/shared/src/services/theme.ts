@@ -117,6 +117,34 @@ export const purple = {
     900: '#462C8E',
 } as const;
 
+/** Theme color - brand blue, Pantone 7685C */
+export const brandBlue = {
+    50: '#F0F4FF',
+    100: '#D9E3FF',
+    200: '#B3C5F5',
+    300: '#8DA6E6',
+    400: '#6684CC',
+    500: '#4D68B3',
+    600: '#334E9D',
+    700: '#263F80',
+    800: '#1B2F66',
+    900: '#10204D',
+} as const;
+
+/** Theme color - brand mint, Pantone 3248C */
+export const brandMint = {
+    50: '#F0FBF8',
+    100: '#D8F2EC',
+    200: '#B7E4DC',
+    300: '#95D4CA',
+    400: '#73C3B6',
+    500: '#55AD9E',
+    600: '#3F9184',
+    700: '#2E756B',
+    800: '#205A52',
+    900: '#143D38',
+} as const;
+
 /** Theme color - gray */
 export const grey = {
     ...MGrey,
@@ -186,14 +214,14 @@ export const getMuiSchemes = () => {
     const lightPalette: ColorSystemOptions['palette'] = {
         grey,
         primary: {
-            main: purple[700],
-            light: purple[600],
-            dark: purple[800],
+            main: brandBlue[600],
+            light: brandBlue[500],
+            dark: brandBlue[700],
         },
         secondary: {
-            main: '#1261BE',
-            light: '#3380CC',
-            dark: '#064699',
+            main: brandMint[400],
+            light: brandMint[300],
+            dark: brandMint[600],
             contrastText: white,
         },
         error: {
@@ -209,9 +237,9 @@ export const getMuiSchemes = () => {
             contrastText: white,
         },
         info: {
-            main: purple[700],
-            light: purple[600],
-            dark: purple[800],
+            main: brandBlue[600],
+            light: brandBlue[500],
+            dark: brandBlue[700],
             contrastText: white,
         },
         success: {
@@ -238,8 +266,8 @@ export const getMuiSchemes = () => {
             bg: grey[800],
         },
         Alert: {
-            infoColor: purple[800],
-            infoStandardBg: purple[50],
+            infoColor: brandBlue[700],
+            infoStandardBg: brandBlue[50],
             errorColor: red[800],
             errorStandardBg: red[50],
             successColor: green[800],
@@ -252,15 +280,15 @@ export const getMuiSchemes = () => {
     const darkPalette: ColorSystemOptions['palette'] = {
         grey,
         primary: {
-            main: purple[600],
-            light: purple[700],
-            dark: purple[500],
+            main: brandBlue[400],
+            light: brandBlue[600],
+            dark: brandBlue[300],
             contrastText: grey[50],
         },
         secondary: {
-            main: '#3380cc',
-            light: '#1261BE',
-            dark: '#599DD9',
+            main: brandMint[400],
+            light: brandMint[500],
+            dark: brandMint[300],
             contrastText: grey[50],
         },
         error: {
@@ -276,9 +304,9 @@ export const getMuiSchemes = () => {
             contrastText: grey[50],
         },
         info: {
-            main: purple[600],
-            light: purple[700],
-            dark: purple[500],
+            main: brandBlue[400],
+            light: brandBlue[600],
+            dark: brandBlue[300],
             contrastText: grey[50],
         },
         success: {

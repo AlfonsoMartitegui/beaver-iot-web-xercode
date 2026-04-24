@@ -136,5 +136,11 @@ export default () => {
 
         /** Theme Color - purple */
         purple: themeService.purple,
+
+        /** Theme Color - brand blue, Pantone 7685C */
+        brandBlue: themeService.brandBlue,
+
+        /** Theme Color - brand mint, Pantone 3248C */
+        brandMint: themeService.brandMint,
     };
 };
