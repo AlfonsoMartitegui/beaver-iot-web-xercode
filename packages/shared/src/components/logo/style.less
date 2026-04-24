@@ -1,6 +1,6 @@
 .@{prefix}-logo {
     width: 162px;
-    height: 40px;
+    height: 54px;
 
     &-inner {
         display: block;
@@ -8,7 +8,8 @@
         overflow: hidden;
         text-indent: -999px;
         background: url('./assets/logo-light.svg') no-repeat;
-        background-size: 100% auto;
+        background-position: center;
+        background-size: contain;
     }
 
     &-mini {
@@ -17,7 +18,8 @@
 
         .@{prefix}-logo-inner {
             background: url('./assets/logo-light-mini.svg') no-repeat;
-            background-size: 100% auto;
+            background-position: center;
+            background-size: contain;
         }
     }
 }
@@ -26,13 +28,15 @@
 [data-theme='dark'] .@{prefix}-logo {
     &-inner {
         background: url('./assets/logo-dark.svg') no-repeat;
-        background-size: 100% auto;
+        background-position: center;
+        background-size: contain;
     }
 
     &-mini {
         .@{prefix}-logo-inner {
             background: url('./assets/logo-dark-mini.svg') no-repeat;
-            background-size: 100% auto;
+            background-position: center;
+            background-size: contain;
         }
     }
 }
