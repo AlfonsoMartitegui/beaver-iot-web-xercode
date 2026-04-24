@@ -25,4 +25,5 @@ export const BASE64_IMAGE_REGEX =
 export const HELP_CENTER_ADDRESS: Partial<Record<LangType, string>> = {
     CN: 'https://www.milesight.com/beaver-iot/zh-Hans/docs/user-guides/introduction/',
     EN: 'https://www.milesight.com/beaver-iot/docs/user-guides/introduction/',
+    ES: 'https://www.milesight.com/beaver-iot/docs/user-guides/introduction/',
 };

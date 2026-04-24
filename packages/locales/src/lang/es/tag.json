@@ -1,0 +1,20 @@
+{
+    "tag.label.append_tag": "Añadir etiquetas seleccionadas",
+    "tag.label.overwrite_tag": "Sobrescribir etiquetas seleccionadas",
+    "tag.label.remove_tag": "Eliminar etiquetas seleccionadas",
+    "tag.label.replace_tag": "Reemplazar etiquetas seleccionadas",
+    "tag.label.tags": "Etiquetas",
+    "tag.tip.bulk_delete_tag": "Una vez eliminadas, estas {1} etiquetas se quitarán de todas las entidades asociadas. ¿Seguro que quieres eliminar estas {1} etiquetas?",
+    "tag.tip.edit_tag_info": "Si modificas la información de esta etiqueta, todas las entidades que la usan sincronizarán el cambio.",
+    "tag.tip.not_any_tags": "Sin etiquetas",
+    "tag.tip.selected_entities_contain_follow_tags": "{1} entidades seleccionadas con las siguientes etiquetas:",
+    "tag.tip.single_delete_tag": "Una vez eliminada, esta etiqueta se quitará de todos los elementos asociados y dejará de mostrarse. ¿Seguro que quieres eliminar la etiqueta: {1}?",
+    "tag.title.add_tag": "Añadir etiqueta",
+    "tag.title.edit_tag": "Editar etiqueta",
+    "tag.title.manage_tags": "Gestionar etiquetas",
+    "tag.title.original_tag": "Etiqueta original",
+    "tag.title.replace_with": "Reemplazar por",
+    "tag.title.tag_management": "Gestión de etiquetas",
+    "tag.title.tag_name": "Nombre de etiqueta",
+    "tag.title.tagged_entities": "Entidades etiquetadas"
+}
