@@ -5,7 +5,7 @@
     "error.http.blueprint_library_address_being_synced": "更新失败：设备蓝图仓库正在被同步中，请稍后再试。",
     "error.http.blueprint_library_address_manifest_invalid": "更新失败：manifest.yaml 文件内容不合法。",
     "error.http.blueprint_library_address_manifest_not_reachable": "更新失败：manifest.yaml 文件获取失败。",
-    "error.http.blueprint_library_beaver_version_unsupported": "更新失败：设备蓝图文件不支持当前 BeaverIoT版本。",
+    "error.http.blueprint_library_beaver_version_unsupported": "更新失败：设备蓝图文件不支持当前 Xercode IoT版本。",
     "error.http.blueprint_library_resource_device_template_not_found": "找不到蓝图仓库的设备模版资源",
     "error.http.blueprint_library_resources_fetch_failed": "更新失败：设备蓝图文件包解析失败。",
     "error.http.codec_resource_format_error": "codec资源的格式不合法。",

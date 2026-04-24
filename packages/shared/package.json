@@ -3,7 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "license": "MIT",
-    "description": "Beaver IoT Common code for Apps.",
+    "description": "Xercode IoT Common code for Apps.",
     "scripts": {
         "lint": "eslint ./src --cache --cache-location=./node_modules/.cache/.eslintcache",
         "lint:fix": "eslint ./src --fix --quiet --cache --cache-location=./node_modules/.cache/.eslintcache",

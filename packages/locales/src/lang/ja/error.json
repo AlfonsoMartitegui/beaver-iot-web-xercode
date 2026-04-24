@@ -5,7 +5,7 @@
     "error.http.blueprint_library_address_being_synced": "更新失敗：同期中です。しばらくしてからもう一度お試しください",
     "error.http.blueprint_library_address_manifest_invalid": "更新失敗：manifest.yaml ファイルの内容が無効です。",
     "error.http.blueprint_library_address_manifest_not_reachable": "更新失敗：manifest.yaml ファイルの取得に失敗しました。",
-    "error.http.blueprint_library_beaver_version_unsupported": "更新失敗：現在の BeaverIoT バージョンと互換性がありません。",
+    "error.http.blueprint_library_beaver_version_unsupported": "更新失敗：現在の Xercode IoT バージョンと互換性がありません。",
     "error.http.blueprint_library_resource_device_template_not_found": "デバイステンプレートリソースが見つかりません",
     "error.http.blueprint_library_resources_fetch_failed": "パッケージの解析に失敗しました",
     "error.http.codec_resource_format_error": "コーデックリソースの形式が無効です",

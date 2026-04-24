@@ -2,7 +2,7 @@
     "name": "@milesight/spec",
     "version": "0.0.1",
     "license": "MIT",
-    "description": "Beaver IoT Assistant specifications",
+    "description": "Xercode IoT Assistant specifications",
     "engines": {
         "node": ">=20.0.0",
         "pnpm": ">=8.0.0"

@@ -5,7 +5,7 @@
     "error.http.blueprint_library_address_being_synced": "Update failed: The device blueprint repository is currently being synchronized. Please try again later.",
     "error.http.blueprint_library_address_manifest_invalid": "Update failed: The contents of the manifest.yaml file are invalid.",
     "error.http.blueprint_library_address_manifest_not_reachable": "Update failed: Failed to retrieve the manifest.yaml file.",
-    "error.http.blueprint_library_beaver_version_unsupported": "Update failed: The device blueprint file is not compatible with the current BeaverIoT version.",
+    "error.http.blueprint_library_beaver_version_unsupported": "Update failed: The device blueprint file is not compatible with the current Xercode IoT version.",
     "error.http.blueprint_library_resource_device_template_not_found": "Unable to locate the device template resources in the blueprint repository.",
     "error.http.blueprint_library_resources_fetch_failed": "Update failed: Failed to parse the device blueprint file package.",
     "error.http.codec_resource_format_error": "The codec resource format is invalid.",

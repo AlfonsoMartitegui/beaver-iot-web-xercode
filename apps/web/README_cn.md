@@ -1,6 +1,6 @@
-# Beaver IoT Web
+# Xercode IoT Web
 
-本项目是 Beaver IoT Web 应用，基础技术栈包括：
+本项目是 Xercode IoT Web 应用，基础技术栈包括：
 
 - 视图库：React
 - 请求库：Axios
