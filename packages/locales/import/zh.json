@@ -678,7 +678,7 @@
   "user.label.role_table_title": "角色",
   "user.label.single_delete_tip": "删除后不可恢复，是否确认删除用户：{0}?",
   "user.label.user_name_table_title": "用户名",
-  "user.label.user_role": "用户",
+  "user.label.user_role": "角色",
   "user.message.not_data_roles_tip": "无数据，请先创建一个角色",
   "user.role.add_user_member_modal_title": "绑定用户",
   "user.role.bulk_dashboard_remove_tip": "是否确认批量移除{0}个仪表盘？",

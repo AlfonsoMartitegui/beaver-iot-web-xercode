@@ -8,7 +8,7 @@
     "user.label.role_table_title": "Role",
     "user.label.single_delete_tip": "Deletion cannot be undone. Are you sure you want to delete user: {0}?",
     "user.label.user_name_table_title": "User Name",
-    "user.label.user_role": "Users",
+    "user.label.user_role": "Roles",
     "user.message.not_data_roles_tip": "Not data, please create a role first.",
     "user.role.add_user_member_modal_title": "Add Member",
     "user.role.bulk_dashboard_remove_tip": "Are you sure you want to remove these {0} dashboards in bulk？",

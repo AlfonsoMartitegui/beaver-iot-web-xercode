@@ -225,7 +225,7 @@ const routes: RouteObjectType[] = [
         ErrorBoundary,
     },
     {
-        path: '/user',
+        path: '/role',
         handle: {
             get title() {
                 return intl.get('user.label.user_role');

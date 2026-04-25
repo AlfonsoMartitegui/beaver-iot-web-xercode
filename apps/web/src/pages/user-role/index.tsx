@@ -6,8 +6,8 @@ import { Breadcrumbs } from '@/components';
 // import { TabPanel } from '@/components';
 // import { useRouteTab } from '@/hooks';
 
-import { UserView } from './views';
-// import { RoleView } from './views';
+// import { UserView } from './views';
+import { RoleView } from './views';
 
 import styles from './style.module.less';
 
@@ -65,7 +65,7 @@ function UserRole() {
             <Breadcrumbs />
             <div className={`ms-view ${styles['user-role']}`}>
                 <div className="ms-view__inner">
-                    <UserView />
+                    <RoleView />
                     {/* {renderTabs()} */}
                 </div>
             </div>

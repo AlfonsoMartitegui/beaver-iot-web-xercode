@@ -678,7 +678,7 @@
   "user.label.role_table_title": "役割",
   "user.label.single_delete_tip": "削除は取り消せません。ユーザー: {0} を削除してもよろしいですか？",
   "user.label.user_name_table_title": "ユーザー名",
-  "user.label.user_role": "ユーザー",
+  "user.label.user_role": "役割",
   "user.message.not_data_roles_tip": "データではありません。まずロールを作成してください",
   "user.role.add_user_member_modal_title": "メンバーを追加",
   "user.role.bulk_dashboard_remove_tip": "これらの{0}ダッシュボードを一括削除してもよろしいですか？",
