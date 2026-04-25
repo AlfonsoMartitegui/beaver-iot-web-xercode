@@ -1,13 +1,17 @@
 .user-role {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
+    position: relative;
+    padding: @padding-lg;
 
     :global {
+        .@{prefix}-view__inner {
+            display: flex;
+            flex-direction: column;
+            padding: @padding-lg;
+        }
+
         .@{prefix}-tab-content {
             position: relative;
             flex: 1;
-            padding: @padding-lg;
             overflow: auto;
 
             > div {

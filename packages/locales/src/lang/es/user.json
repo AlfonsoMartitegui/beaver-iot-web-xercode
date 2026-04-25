@@ -8,7 +8,7 @@
     "user.label.role_table_title": "Rol",
     "user.label.single_delete_tip": "La eliminación no se puede deshacer. ¿Seguro que quieres eliminar el usuario: {0}?",
     "user.label.user_name_table_title": "Nombre de usuario",
-    "user.label.user_role": "Usuarios y roles",
+    "user.label.user_role": "Usuarios",
     "user.message.not_data_roles_tip": "Sin datos. Crea primero un rol.",
     "user.role.add_user_member_modal_title": "Añadir miembro",
     "user.role.bulk_dashboard_remove_tip": "¿Seguro que quieres quitar estos {0} paneles en lote?",
