@@ -1,0 +1,29 @@
+# WEB application development service port
+WEB_DEV_PORT=9000
+# Interface Origin address
+WEB_API_ORIGIN=/
+# WebSocket Host address
+WEB_WS_HOST=/
+# Interface API proxy address
+WEB_API_PROXY=http://localhost/api/v1
+# WebSocket proxy address
+WEB_SOCKET_PROXY=ws://localhost:8083
+# Mock API proxy address
+# MOCK_API_PROXY=https://api.escuelajs.co
+
+# Enable HTTPS for development
+# ENABLE_HTTPS=false
+
+# Enable VConsole
+ENABLE_VCONSOLE=true
+
+# Enable Service Worker
+ENABLE_SW=false
+
+# Enable Service Worker in development mode
+# ENABLE_SW_DEV=false
+
+# Oauth client ID
+OAUTH_CLIENT_ID=iab
+# Oauth client secret
+OAUTH_CLIENT_SECRET=milesight*iab
