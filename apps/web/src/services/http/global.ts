@@ -85,6 +85,19 @@ export interface GlobalAPISchema extends APISchema {
         };
     };
 
+    /** Exchange HUB handoff code for Beaver session tokens */
+    hubSessionExchange: {
+        request: {
+            code: string;
+        };
+        response: {
+            access_token: string;
+            refresh_token: string;
+            token_type?: string;
+            expires_in?: number;
+        };
+    };
+
     /** Upload file */
     fileUpload: {
         request: {
@@ -112,6 +125,14 @@ export default attachAPI<GlobalAPISchema>(client, {
         getUserStatus: `GET ${API_PREFIX}/user/status`,
         getUserInfo: `GET ${API_PREFIX}/user`,
         getUploadConfig: `POST ${API_PREFIX}/resource/upload-config`,
+        async hubSessionExchange(params, options) {
+            return unauthClient.request({
+                method: 'POST',
+                url: `${API_PREFIX}/hub/session/exchange`,
+                data: params,
+                ...options,
+            });
+        },
         async fileUpload(params, options) {
             const { url, file, mimeType } = params;
             const apiUrl = url.startsWith('http')

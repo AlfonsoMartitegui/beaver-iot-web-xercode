@@ -148,6 +148,10 @@ export default defineConfig({
         port: WEB_DEV_PORT,
         open: true,
         proxy: {
+            '/api/v1/hub/session/exchange': {
+                target: WEB_API_PROXY,
+                changeOrigin: true,
+            },
             '/api': {
                 target: WEB_API_PROXY,
                 changeOrigin: true,

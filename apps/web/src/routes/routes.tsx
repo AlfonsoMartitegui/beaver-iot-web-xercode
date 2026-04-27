@@ -268,6 +268,21 @@ const routes: RouteObjectType[] = [
         ErrorBoundary,
     },
     {
+        path: '/hub-bridge',
+        handle: {
+            title: 'HUB Bridge',
+            layout: 'blank',
+            authFree: true,
+            mobileAccessible: true,
+            hideInMenuBar: true,
+        },
+        async lazy() {
+            const { default: Component } = await import('@/pages/hub-bridge');
+            return { Component };
+        },
+        ErrorBoundary,
+    },
+    {
         path: '/auth',
         handle: {
             layout: 'blank',
