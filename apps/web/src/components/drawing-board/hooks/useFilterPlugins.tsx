@@ -37,6 +37,11 @@ export default function useFilterPlugins(
         //     return pluginsControlPanel.filter(p => p.type !== 'deviceList');
         // }
 
+        /**
+         * To recover alarm and map plugins in the add-widget picker, filter only deviceList:
+         */
+        // return pluginsControlPanel.filter(p => !(['deviceList'] as PluginType[]).includes(p.type));
+
         return pluginsControlPanel.filter(
             p => !(['deviceList', 'alarm', 'map'] as PluginType[]).includes(p.type),
         );

@@ -114,6 +114,7 @@ export type PluginType =
     | 'pieChart'
     | 'progress'
     | 'radarChart'
+    | 'statusIndicator'
     | 'switch'
     | 'text'
     | 'trigger'
