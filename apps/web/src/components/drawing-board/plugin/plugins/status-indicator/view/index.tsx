@@ -20,12 +20,26 @@ export interface ViewProps {
         entity?: EntityOptionType;
         title?: string;
         label?: string;
+        falseLabel?: string;
+        trueLabel?: string;
+        falseAppearanceIcon?: {
+            icon?: string;
+            color?: string;
+        };
+        trueAppearanceIcon?: {
+            icon?: string;
+            color?: string;
+        };
+        /** @deprecated Use falseLabel instead. */
         normalLabel?: string;
+        /** @deprecated Use trueLabel instead. */
         alarmLabel?: string;
+        /** @deprecated Use falseAppearanceIcon instead. */
         normalAppearanceIcon?: {
             icon?: string;
             color?: string;
         };
+        /** @deprecated Use trueAppearanceIcon instead. */
         alarmAppearanceIcon?: {
             icon?: string;
             color?: string;
@@ -40,14 +54,14 @@ const getBooleanStatus = (value: unknown) => {
 
 const View = (props: ViewProps) => {
     const { config, configJson, widgetId, dashboardId } = props;
-    const { entity, title, label, normalLabel, alarmLabel } = config || {};
+    const { entity, title, label, falseLabel, trueLabel, normalLabel, alarmLabel } = config || {};
     const { isPreview, name } = configJson || {};
 
     const { getIntlText } = useI18n();
     const { getCSSVariableValue } = useTheme();
     const { containerRef, showIconWidth } = useContainerRect();
 
-    const [isAlarm, setIsAlarm] = useState(false);
+    const [statusValue, setStatusValue] = useState(false);
 
     /**
      * Request physical state function
@@ -59,12 +73,12 @@ const View = (props: ViewProps) => {
             const [error, res] = await awaitWrap(entityAPI.getEntityStatus({ id: entity.value }));
 
             if (error || !isRequestSuccess(res)) {
-                setIsAlarm(false);
+                setStatusValue(false);
                 return;
             }
 
             const entityStatus = getResponseData(res);
-            setIsAlarm(getBooleanStatus(entityStatus?.value));
+            setStatusValue(getBooleanStatus(entityStatus?.value));
         },
         {
             manual: true,
@@ -80,7 +94,7 @@ const View = (props: ViewProps) => {
         if (entity) {
             requestEntityStatus();
         } else {
-            setIsAlarm(false);
+            setStatusValue(false);
         }
     }, [entity, requestEntityStatus]);
 
@@ -88,20 +102,38 @@ const View = (props: ViewProps) => {
         const fallbackLabel =
             title || label || getIntlText(name || 'dashboard.plugin_name_status_indicator');
 
-        return (isAlarm ? alarmLabel : normalLabel) || fallbackLabel;
-    }, [alarmLabel, isAlarm, label, name, normalLabel, title, getIntlText]);
+        return (statusValue ? trueLabel || alarmLabel : falseLabel || normalLabel) || fallbackLabel;
+    }, [
+        alarmLabel,
+        falseLabel,
+        getIntlText,
+        label,
+        name,
+        normalLabel,
+        statusValue,
+        title,
+        trueLabel,
+    ]);
 
     const appearance = useMemo(() => {
-        return isAlarm
+        return statusValue
             ? {
-                  icon: get(config, 'alarmAppearanceIcon.icon', 'WarningIcon'),
-                  color: get(config, 'alarmAppearanceIcon.color', '#EC5D74'),
+                  icon:
+                      get(config, 'trueAppearanceIcon.icon') ||
+                      get(config, 'alarmAppearanceIcon.icon', 'WarningIcon'),
+                  color:
+                      get(config, 'trueAppearanceIcon.color') ||
+                      get(config, 'alarmAppearanceIcon.color', '#EC5D74'),
               }
             : {
-                  icon: get(config, 'normalAppearanceIcon.icon', 'CheckCircleIcon'),
-                  color: get(config, 'normalAppearanceIcon.color', '#57B573'),
+                  icon:
+                      get(config, 'falseAppearanceIcon.icon') ||
+                      get(config, 'normalAppearanceIcon.icon', 'CheckCircleIcon'),
+                  color:
+                      get(config, 'falseAppearanceIcon.color') ||
+                      get(config, 'normalAppearanceIcon.color', '#57B573'),
               };
-    }, [isAlarm, config]);
+    }, [statusValue, config]);
 
     const IconComponent = useMemo(() => {
         const Icon = Reflect.get(Icons, appearance.icon || '');

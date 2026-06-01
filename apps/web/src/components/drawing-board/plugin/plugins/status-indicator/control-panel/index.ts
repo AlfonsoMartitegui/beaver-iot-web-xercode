@@ -7,14 +7,57 @@ import type {
 import type { AppearanceIconValue } from '@/components/drawing-board/plugin/components';
 import StatusIndicatorIcon from '../icon.svg';
 
+const DEFAULT_FALSE_APPEARANCE: AppearanceIconValue = {
+    icon: 'CheckCircleIcon',
+    color: '#57B573',
+};
+const DEFAULT_TRUE_APPEARANCE: AppearanceIconValue = {
+    icon: 'WarningIcon',
+    color: '#EC5D74',
+};
+
 export interface StatusIndicatorControlPanelConfig {
     entity?: EntityOptionType;
     title?: string;
+    falseLabel?: string;
+    trueLabel?: string;
+    falseAppearanceIcon?: AppearanceIconValue;
+    trueAppearanceIcon?: AppearanceIconValue;
+    /** @deprecated Use falseLabel instead. */
     normalLabel?: string;
+    /** @deprecated Use trueLabel instead. */
     alarmLabel?: string;
+    /** @deprecated Use falseAppearanceIcon instead. */
     normalAppearanceIcon?: AppearanceIconValue;
+    /** @deprecated Use trueAppearanceIcon instead. */
     alarmAppearanceIcon?: AppearanceIconValue;
 }
+
+const migrateLegacyConfig = (
+    update: (newData: Partial<StatusIndicatorControlPanelConfig>) => void,
+    formData?: StatusIndicatorControlPanelConfig,
+) => {
+    if (!formData) return;
+
+    const newData: Partial<StatusIndicatorControlPanelConfig> = {};
+
+    if (!formData.falseLabel && formData.normalLabel) {
+        newData.falseLabel = formData.normalLabel;
+    }
+    if (!formData.trueLabel && formData.alarmLabel) {
+        newData.trueLabel = formData.alarmLabel;
+    }
+    if (!formData.falseAppearanceIcon && formData.normalAppearanceIcon) {
+        newData.falseAppearanceIcon = formData.normalAppearanceIcon;
+    }
+    if (!formData.trueAppearanceIcon && formData.alarmAppearanceIcon) {
+        newData.trueAppearanceIcon = formData.alarmAppearanceIcon;
+    }
+
+    if (Object.keys(newData).length) {
+        update(newData);
+    }
+};
 
 /**
  * The status indicator Control Panel Config
@@ -47,6 +90,7 @@ const statusIndicatorControlPanelConfig =
                                         required: true,
                                     },
                                 },
+                                setValuesToFormConfig: migrateLegacyConfig,
                                 componentProps: {
                                     required: true,
                                     entityType: ['PROPERTY'],
@@ -71,12 +115,12 @@ const statusIndicatorControlPanelConfig =
                             },
                         },
                         {
-                            name: 'normalLabelInput',
+                            name: 'falseLabelInput',
                             config: {
                                 type: 'Input',
-                                label: t('dashboard.label.normal_status_label'),
+                                label: t('dashboard.label.false_status_label'),
                                 controllerProps: {
-                                    name: 'normalLabel',
+                                    name: 'falseLabel',
                                     defaultValue: '',
                                     rules: {
                                         maxLength: 35,
@@ -85,12 +129,12 @@ const statusIndicatorControlPanelConfig =
                             },
                         },
                         {
-                            name: 'alarmLabelInput',
+                            name: 'trueLabelInput',
                             config: {
                                 type: 'Input',
-                                label: t('dashboard.label.alarm_status_label'),
+                                label: t('dashboard.label.true_status_label'),
                                 controllerProps: {
-                                    name: 'alarmLabel',
+                                    name: 'trueLabel',
                                     defaultValue: '',
                                     rules: {
                                         maxLength: 35,
@@ -99,20 +143,15 @@ const statusIndicatorControlPanelConfig =
                             },
                         },
                         {
-                            name: 'appearanceOfNormalStatus',
+                            name: 'appearanceOfFalseStatus',
                             config: {
                                 type: 'AppearanceIcon',
-                                label: t('common.label.appearance_of_status', {
-                                    1: 'normal',
-                                }),
+                                label: t('dashboard.label.false_status_appearance'),
                                 controllerProps: {
-                                    name: 'normalAppearanceIcon',
+                                    name: 'falseAppearanceIcon',
                                 },
                                 componentProps: {
-                                    defaultValue: {
-                                        icon: 'CheckCircleIcon',
-                                        color: '#57B573',
-                                    },
+                                    defaultValue: DEFAULT_FALSE_APPEARANCE,
                                 },
                                 mapStateToProps(oldConfig, formData) {
                                     const { componentProps, ...restConfig } = oldConfig || {};
@@ -120,6 +159,10 @@ const statusIndicatorControlPanelConfig =
                                         ...restConfig,
                                         componentProps: {
                                             ...componentProps,
+                                            defaultValue:
+                                                formData?.falseAppearanceIcon ||
+                                                formData?.normalAppearanceIcon ||
+                                                DEFAULT_FALSE_APPEARANCE,
                                             formData,
                                         },
                                     } as BaseControlConfig<StatusIndicatorControlPanelConfig>;
@@ -127,20 +170,15 @@ const statusIndicatorControlPanelConfig =
                             },
                         },
                         {
-                            name: 'appearanceOfAlarmStatus',
+                            name: 'appearanceOfTrueStatus',
                             config: {
                                 type: 'AppearanceIcon',
-                                label: t('common.label.appearance_of_status', {
-                                    1: 'alarm',
-                                }),
+                                label: t('dashboard.label.true_status_appearance'),
                                 controllerProps: {
-                                    name: 'alarmAppearanceIcon',
+                                    name: 'trueAppearanceIcon',
                                 },
                                 componentProps: {
-                                    defaultValue: {
-                                        icon: 'WarningIcon',
-                                        color: '#EC5D74',
-                                    },
+                                    defaultValue: DEFAULT_TRUE_APPEARANCE,
                                 },
                                 mapStateToProps(oldConfig, formData) {
                                     const { componentProps, ...restConfig } = oldConfig || {};
@@ -148,6 +186,10 @@ const statusIndicatorControlPanelConfig =
                                         ...restConfig,
                                         componentProps: {
                                             ...componentProps,
+                                            defaultValue:
+                                                formData?.trueAppearanceIcon ||
+                                                formData?.alarmAppearanceIcon ||
+                                                DEFAULT_TRUE_APPEARANCE,
                                             formData,
                                         },
                                     } as BaseControlConfig<StatusIndicatorControlPanelConfig>;
