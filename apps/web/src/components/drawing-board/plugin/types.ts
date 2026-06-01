@@ -6,6 +6,8 @@ import { type Layout } from 'react-grid-layout';
 import { type ToggleRadioProps, type UploadProps } from '@/components';
 import {
     type SelectProps as PluginSelectProps,
+    type IconColorSelectProps,
+    type SwitchProps as PluginSwitchProps,
     type ChartEntityPositionProps,
     type AppearanceIconProps,
     type MultiAppearanceIconProps,
@@ -26,8 +28,10 @@ export type ControlType =
     | 'ChartTimeSelect'
     | 'ToggleRadio'
     | 'EntitySelect'
+    | 'Switch'
     | 'Upload'
     | 'AppearanceIcon'
+    | 'IconColorSelect'
     | 'MultiAppearanceIcon'
     | 'MultiEntitySelect'
     | 'ChartMetricsSelect'
@@ -42,8 +46,10 @@ export type ControlTypePropsMap = {
     ChartTimeSelect: Partial<PluginSelectProps>;
     ToggleRadio: ToggleRadioProps;
     EntitySelect: Partial<SingleEntitySelectProps>;
+    Switch: Partial<PluginSwitchProps>;
     Upload: Partial<UploadProps>;
     AppearanceIcon: AppearanceIconProps;
+    IconColorSelect: Partial<IconColorSelectProps>;
     MultiAppearanceIcon: MultiAppearanceIconProps;
     MultiEntitySelect: Partial<MultipleEntitySelectProps>;
     ChartMetricsSelect: Partial<ChartMetricsSelectProps>;
@@ -114,6 +120,7 @@ export type PluginType =
     | 'pieChart'
     | 'progress'
     | 'radarChart'
+    | 'statusCard'
     | 'statusIndicator'
     | 'switch'
     | 'text'

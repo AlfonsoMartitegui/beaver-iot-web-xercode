@@ -3,9 +3,9 @@ export { default as Upload, type FileValueType, type UploadFile } from '@/compon
 
 export { default as Input } from './input';
 export { default as Select, type SelectProps } from './select';
-export { default as Switch } from './switch';
+export { default as Switch, type SwitchProps } from './switch';
 export { default as IconSelect } from './icon-select';
-export { default as IconColorSelect } from './icon-color-select';
+export { default as IconColorSelect, type IconColorSelectProps } from './icon-color-select';
 export { default as ChartTimeSelect } from './chart-time-select';
 export { default as EntitySelect, type IProps as SingleEntitySelectProps } from './entity-select';
 export {

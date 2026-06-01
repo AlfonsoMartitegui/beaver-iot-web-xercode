@@ -13,10 +13,12 @@ import {
     ToggleRadio,
     EntitySelect,
     type SingleEntitySelectProps,
+    Switch,
     MultiEntitySelect,
     type MultipleEntitySelectProps,
     Upload,
     AppearanceIcon,
+    IconColorSelect,
     MultiAppearanceIcon,
     ChartMetricsSelect,
     MultiDeviceSelect,
@@ -108,6 +110,13 @@ const ControlComponent: React.FC<ControlComponentProps> = (props: ControlCompone
                     {...(config?.componentProps as SingleEntitySelectProps)}
                 />
             );
+        case 'Switch':
+            return (
+                <Switch
+                    {...omit(commonProps, ['label', 'error', 'helperText'])}
+                    {...config?.componentProps}
+                />
+            );
         case 'MultiEntitySelect':
             return (
                 <MultiEntitySelect
@@ -125,6 +134,18 @@ const ControlComponent: React.FC<ControlComponentProps> = (props: ControlCompone
             );
         case 'AppearanceIcon':
             return <AppearanceIcon {...commonProps} {...config?.componentProps} />;
+        case 'IconColorSelect':
+            return (
+                <IconColorSelect
+                    {...omit(commonProps, ['error', 'helperText'])}
+                    {...config?.componentProps}
+                    style={{
+                        width: '100%',
+                        marginBottom: 16,
+                        ...config?.componentProps?.style,
+                    }}
+                />
+            );
         case 'MultiAppearanceIcon':
             return (
                 <MultiAppearanceIcon

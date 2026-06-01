@@ -93,6 +93,7 @@ export function useResponsiveLayout(widgets: WidgetDetail[]) {
 
         switch (plugin.type) {
             case 'dataCard':
+            case 'statusCard':
             case 'switch':
             case 'trigger':
             case 'progress':

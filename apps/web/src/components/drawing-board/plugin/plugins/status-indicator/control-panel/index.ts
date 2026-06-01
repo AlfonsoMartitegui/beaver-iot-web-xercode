@@ -74,7 +74,7 @@ const statusIndicatorControlPanelConfig =
             minRow: 1,
             minCol: 1,
             maxRow: 2,
-            maxCol: 2,
+            maxCol: 4,
             configProps: [
                 {
                     label: 'Status Indicator Config',

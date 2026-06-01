@@ -4,7 +4,7 @@ import {
     FormControlLabel,
 } from '@mui/material';
 
-type SwitchProps = MuiSwitchProps;
+export type SwitchProps = MuiSwitchProps;
 
 const Switch = (props: SwitchProps) => {
     const { title, className, value, ...rest } = props;
