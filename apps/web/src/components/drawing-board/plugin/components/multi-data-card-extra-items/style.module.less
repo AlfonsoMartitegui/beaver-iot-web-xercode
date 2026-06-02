@@ -1,0 +1,83 @@
+.multi-data-card-extra-items {
+    margin-bottom: @margin-md;
+}
+
+.label {
+    margin-bottom: @margin-xs;
+    color: var(--text-color-secondary);
+    .text-size(@font-size-2);
+}
+
+.list-content {
+    display: flex;
+    flex-direction: column;
+    gap: @margin-sm;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    padding: @padding-sm;
+    border: 1px solid var(--border-color-base);
+    border-radius: @border-radius-base;
+
+    :global {
+        .@{mui-prefix}Autocomplete-root,
+        .@{mui-prefix}FormControl-root {
+            width: 100%;
+            min-width: 0;
+        }
+    }
+}
+
+.item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 24px;
+    margin-bottom: @margin-xs;
+
+    :global {
+        .@{mui-prefix}IconButton-root {
+            flex-shrink: 0;
+        }
+    }
+}
+
+.item-label {
+    color: var(--text-color-primary);
+    .text-size(@font-size-base);
+}
+
+.required {
+    margin-left: @margin-xxs;
+    color: var(--error-color);
+}
+
+.item-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    margin-bottom: @margin-lg;
+
+    :global {
+        .@{mui-prefix}FormControl-root {
+            width: 100%;
+        }
+    }
+}
+
+.item-appearance {
+    :global {
+        .appearance-icon {
+            width: 100%;
+        }
+
+        .appearance-icon__container {
+            width: 100%;
+        }
+
+        .@{mui-prefix}FormControl-root {
+            min-width: 0;
+        }
+    }
+}

@@ -30,6 +30,11 @@ export {
     type MultiAppearanceIconProps,
 } from './multi-appearance-icon';
 export {
+    default as MultiDataCardExtraItems,
+    type MultiDataCardExtraItemsProps,
+    type MultiDataCardExtraItem,
+} from './multi-data-card-extra-items';
+export {
     default as MultiDeviceSelect,
     type MultiDeviceSelectProps,
     type DeviceSelectData,

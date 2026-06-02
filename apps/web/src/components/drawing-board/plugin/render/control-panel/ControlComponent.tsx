@@ -20,6 +20,7 @@ import {
     AppearanceIcon,
     IconColorSelect,
     MultiAppearanceIcon,
+    MultiDataCardExtraItems,
     ChartMetricsSelect,
     MultiDeviceSelect,
     AlarmTimeSelect,
@@ -149,6 +150,13 @@ const ControlComponent: React.FC<ControlComponentProps> = (props: ControlCompone
         case 'MultiAppearanceIcon':
             return (
                 <MultiAppearanceIcon
+                    {...omit(commonProps, ['label'])}
+                    {...config?.componentProps}
+                />
+            );
+        case 'MultiDataCardExtraItems':
+            return (
+                <MultiDataCardExtraItems
                     {...omit(commonProps, ['label'])}
                     {...config?.componentProps}
                 />

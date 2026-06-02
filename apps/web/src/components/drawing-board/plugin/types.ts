@@ -11,6 +11,7 @@ import {
     type ChartEntityPositionProps,
     type AppearanceIconProps,
     type MultiAppearanceIconProps,
+    type MultiDataCardExtraItemsProps,
     type MultipleEntitySelectProps,
     type ChartMetricsSelectProps,
     type SingleEntitySelectProps,
@@ -33,6 +34,7 @@ export type ControlType =
     | 'AppearanceIcon'
     | 'IconColorSelect'
     | 'MultiAppearanceIcon'
+    | 'MultiDataCardExtraItems'
     | 'MultiEntitySelect'
     | 'ChartMetricsSelect'
     | 'MultiDeviceSelect'
@@ -51,6 +53,7 @@ export type ControlTypePropsMap = {
     AppearanceIcon: AppearanceIconProps;
     IconColorSelect: Partial<IconColorSelectProps>;
     MultiAppearanceIcon: MultiAppearanceIconProps;
+    MultiDataCardExtraItems: MultiDataCardExtraItemsProps;
     MultiEntitySelect: Partial<MultipleEntitySelectProps>;
     ChartMetricsSelect: Partial<ChartMetricsSelectProps>;
     MultiDeviceSelect: MultiDeviceSelectProps;
@@ -117,6 +120,7 @@ export type PluginType =
     | 'iconRemaining'
     | 'image'
     | 'lineChart'
+    | 'multiDataCard'
     | 'pieChart'
     | 'progress'
     | 'radarChart'

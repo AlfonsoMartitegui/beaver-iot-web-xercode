@@ -1,54 +1,48 @@
 import { t } from '@milesight/shared/src/utils/tools';
 
-import type { ControlPanelConfig } from '@/components/drawing-board/plugin/types';
-import type { AppearanceIconValue } from '@/components/drawing-board/plugin/components';
-import StatusCardIcon from '../icon.svg';
+import type {
+    BaseControlConfig,
+    ControlPanelConfig,
+} from '@/components/drawing-board/plugin/types';
+import type {
+    AppearanceIconValue,
+    MultiDataCardExtraItem,
+} from '@/components/drawing-board/plugin/components';
+import MultiDataCardIcon from '../icon.svg';
 
-const DEFAULT_FALSE_APPEARANCE: AppearanceIconValue = {
-    icon: 'CheckCircleIcon',
-    color: '#57B573',
-};
-const DEFAULT_TRUE_APPEARANCE: AppearanceIconValue = {
-    icon: 'WarningIcon',
-    color: '#EC5D74',
-};
-const DEFAULT_FALSE_LED_COLOR = '#57B573';
-const DEFAULT_TRUE_LED_COLOR = '#EC5D74';
-
-export interface StatusCardControlPanelConfig {
+export interface MultiDataCardControlPanelConfig {
     entity?: EntityOptionType;
     title?: string;
+    icons?: Record<string, AppearanceIconValue>;
     falseStatusLabel?: string;
     trueStatusLabel?: string;
-    /** @deprecated Use falseStatusLabel instead. */
-    falseLabel?: string;
-    /** @deprecated Use trueStatusLabel instead. */
-    trueLabel?: string;
     falseAppearanceIcon?: AppearanceIconValue;
     trueAppearanceIcon?: AppearanceIconValue;
-    showLed?: boolean;
-    falseLedColor?: string;
-    trueLedColor?: string;
+    extraItems?: MultiDataCardExtraItem[];
 }
 
+const isBooleanEntity = (entity?: EntityOptionType) => {
+    return entity?.rawData?.entityValueType === 'BOOLEAN' || entity?.valueType === 'BOOLEAN';
+};
+
 /**
- * The status card Control Panel Config
+ * The multi data card Control Panel Config
  */
-const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPanelConfig> => {
+const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardControlPanelConfig> => {
     return {
         class: 'data_card',
-        type: 'statusCard',
-        name: 'dashboard.plugin_name_status_card',
-        icon: StatusCardIcon,
-        defaultRow: 1,
-        defaultCol: 2,
+        type: 'multiDataCard',
+        name: 'dashboard.plugin_name_multi_data_card',
+        icon: MultiDataCardIcon,
+        defaultRow: 2,
+        defaultCol: 3,
         minRow: 1,
         minCol: 2,
-        maxRow: 2,
-        maxCol: 4,
+        maxRow: 4,
+        maxCol: 6,
         configProps: [
             {
-                label: 'Status Card Config',
+                label: 'Multi Data Card Config',
                 controlSetItems: [
                     {
                         name: 'entitySelect',
@@ -64,9 +58,8 @@ const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPan
                             componentProps: {
                                 required: true,
                                 entityType: ['PROPERTY'],
-                                entityValueType: ['BOOLEAN'],
+                                entityValueType: ['STRING', 'LONG', 'DOUBLE', 'BOOLEAN'],
                                 entityAccessMod: ['R', 'RW'],
-                                excludeChildren: true,
                             },
                         },
                     },
@@ -77,7 +70,7 @@ const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPan
                             label: t('common.label.title'),
                             controllerProps: {
                                 name: 'title',
-                                defaultValue: '',
+                                defaultValue: t('dashboard.plugin_name_multi_data_card'),
                                 rules: {
                                     maxLength: 35,
                                 },
@@ -96,6 +89,9 @@ const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPan
                                     maxLength: 35,
                                 },
                             },
+                            visibility(formData) {
+                                return isBooleanEntity(formData?.entity);
+                            },
                         },
                     },
                     {
@@ -110,6 +106,9 @@ const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPan
                                     maxLength: 35,
                                 },
                             },
+                            visibility(formData) {
+                                return isBooleanEntity(formData?.entity);
+                            },
                         },
                     },
                     {
@@ -120,8 +119,8 @@ const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPan
                             controllerProps: {
                                 name: 'falseAppearanceIcon',
                             },
-                            componentProps: {
-                                defaultValue: DEFAULT_FALSE_APPEARANCE,
+                            visibility(formData) {
+                                return isBooleanEntity(formData?.entity);
                             },
                         },
                     },
@@ -133,49 +132,56 @@ const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPan
                             controllerProps: {
                                 name: 'trueAppearanceIcon',
                             },
-                            componentProps: {
-                                defaultValue: DEFAULT_TRUE_APPEARANCE,
+                            visibility(formData) {
+                                return isBooleanEntity(formData?.entity);
                             },
                         },
                     },
                     {
-                        name: 'showLed',
+                        name: 'multiAppearanceIcon',
                         config: {
-                            type: 'Switch',
+                            type: 'MultiAppearanceIcon',
                             controllerProps: {
-                                name: 'showLed',
-                                defaultValue: true,
-                            },
-                            componentProps: {
-                                title: t('dashboard.label.show_led_indicator'),
-                            },
-                        },
-                    },
-                    {
-                        name: 'falseLedColor',
-                        config: {
-                            type: 'IconColorSelect',
-                            label: t('dashboard.label.false_led_color'),
-                            controllerProps: {
-                                name: 'falseLedColor',
-                                defaultValue: DEFAULT_FALSE_LED_COLOR,
+                                name: 'icons',
                             },
                             visibility(formData) {
-                                return formData?.showLed !== false;
+                                return (
+                                    Boolean(formData?.entity) && !isBooleanEntity(formData?.entity)
+                                );
+                            },
+                            mapStateToProps(oldConfig, formData) {
+                                const { componentProps, ...restConfig } = oldConfig || {};
+                                return {
+                                    ...restConfig,
+                                    componentProps: {
+                                        ...componentProps,
+                                        formData,
+                                    },
+                                } as BaseControlConfig<MultiDataCardControlPanelConfig>;
                             },
                         },
                     },
                     {
-                        name: 'trueLedColor',
+                        name: 'extraItems',
                         config: {
-                            type: 'IconColorSelect',
-                            label: t('dashboard.label.true_led_color'),
+                            type: 'MultiDataCardExtraItems',
                             controllerProps: {
-                                name: 'trueLedColor',
-                                defaultValue: DEFAULT_TRUE_LED_COLOR,
+                                name: 'extraItems',
+                                defaultValue: [],
                             },
-                            visibility(formData) {
-                                return formData?.showLed !== false;
+                            componentProps: {
+                                maxCount: 10,
+                                entityType: ['PROPERTY' as EntityType],
+                                entityValueType: [
+                                    'STRING' as EntityValueDataType,
+                                    'LONG' as EntityValueDataType,
+                                    'DOUBLE' as EntityValueDataType,
+                                    'BOOLEAN' as EntityValueDataType,
+                                ],
+                                entityAccessMod: [
+                                    'R' as EntityAccessMode,
+                                    'RW' as EntityAccessMode,
+                                ],
                             },
                         },
                     },
@@ -185,4 +191,4 @@ const statusCardControlPanelConfig = (): ControlPanelConfig<StatusCardControlPan
     };
 };
 
-export default statusCardControlPanelConfig;
+export default multiDataCardControlPanelConfig;

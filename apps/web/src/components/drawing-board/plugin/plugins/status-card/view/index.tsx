@@ -22,11 +22,11 @@ interface ViewProps {
 }
 
 const DEFAULT_FALSE_APPEARANCE = {
-    icon: 'IotDoorCloseIcon',
+    icon: 'CheckCircleIcon',
     color: '#57B573',
 };
 const DEFAULT_TRUE_APPEARANCE = {
-    icon: 'IotDoorOpenIcon',
+    icon: 'WarningIcon',
     color: '#EC5D74',
 };
 const DEFAULT_FALSE_LED_COLOR = '#57B573';
@@ -118,13 +118,14 @@ const View = (props: ViewProps) => {
     const ledColor = statusValue
         ? trueLedColor || DEFAULT_TRUE_LED_COLOR
         : falseLedColor || DEFAULT_FALSE_LED_COLOR;
+    const appearanceColor = appearance.color || getCSSVariableValue('--gray-5');
 
     const IconComponent = useMemo(() => {
         const Icon = Reflect.get(Icons, appearance.icon || '');
         if (!Icon) return null;
 
-        return <Icon sx={{ color: appearance.color || getCSSVariableValue('--gray-5') }} />;
-    }, [appearance, getCSSVariableValue]);
+        return <Icon sx={{ color: appearanceColor }} />;
+    }, [appearance.icon, appearanceColor]);
 
     // ---------- Entity status management ----------
     const { addEntityListener } = useActivityEntity();
@@ -153,7 +154,14 @@ const View = (props: ViewProps) => {
         >
             <div className="status-card-view-card">
                 {showIconWidth && (
-                    <div className="status-card-view-card__icon">{IconComponent}</div>
+                    <div
+                        className="status-card-view-card__icon"
+                        style={{
+                            backgroundColor: `color-mix(in srgb, ${appearanceColor} 14%, transparent)`,
+                        }}
+                    >
+                        {IconComponent}
+                    </div>
                 )}
                 <div className="status-card-view-card__content">
                     <Tooltip
