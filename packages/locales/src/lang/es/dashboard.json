@@ -14,6 +14,7 @@
     "dashboard.label.false_status_label": "Etiqueta de estado falso",
     "dashboard.label.false_led_color": "Color del LED falso",
     "dashboard.label.show_led_indicator": "Mostrar indicador LED",
+    "dashboard.label.show_status_options": "Mostrar opciones de estado",
     "dashboard.label.true_status_appearance": "Apariencia del estado verdadero",
     "dashboard.label.true_status_label": "Etiqueta de estado verdadero",
     "dashboard.label.true_led_color": "Color del LED verdadero",

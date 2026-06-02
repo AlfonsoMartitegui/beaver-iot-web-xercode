@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useLayoutEffect } from 'react';
-import { Button, IconButton, FormHelperText } from '@mui/material';
+import { Button, IconButton, FormHelperText, FormControlLabel, Switch } from '@mui/material';
 import { isEqual } from 'lodash-es';
 import { useControllableValue, useDynamicList } from 'ahooks';
 
@@ -29,6 +29,7 @@ export interface MultiDataCardExtraItem {
     trueStatusLabel?: string;
     falseAppearanceIcon?: AppearanceIconValue;
     trueAppearanceIcon?: AppearanceIconValue;
+    showStatusOptions?: boolean;
 }
 
 export interface MultiDataCardExtraItemsProps {
@@ -164,6 +165,21 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
                             />
                             {isBoolean ? (
                                 <>
+                                    <FormControlLabel
+                                        sx={{ width: '100%', marginBottom: 2 }}
+                                        control={
+                                            <Switch
+                                                checked={Boolean(item.showStatusOptions)}
+                                                onChange={(_, showStatusOptions) => {
+                                                    replace(index, {
+                                                        ...item,
+                                                        showStatusOptions,
+                                                    });
+                                                }}
+                                            />
+                                        }
+                                        label={getIntlText('dashboard.label.show_status_options')}
+                                    />
                                     <div className={styles['item-fields']}>
                                         <Input
                                             label={getIntlText(
@@ -232,18 +248,35 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
                                     </div>
                                 </>
                             ) : isEnum ? (
-                                <div className={styles['item-appearance']}>
-                                    <MultiAppearanceIcon
-                                        value={item.icons}
-                                        formData={{ entity: item.entity }}
-                                        onChange={icons => {
-                                            replace(index, {
-                                                ...item,
-                                                icons,
-                                            });
-                                        }}
+                                <>
+                                    <FormControlLabel
+                                        sx={{ width: '100%', marginBottom: 2 }}
+                                        control={
+                                            <Switch
+                                                checked={Boolean(item.showStatusOptions)}
+                                                onChange={(_, showStatusOptions) => {
+                                                    replace(index, {
+                                                        ...item,
+                                                        showStatusOptions,
+                                                    });
+                                                }}
+                                            />
+                                        }
+                                        label={getIntlText('dashboard.label.show_status_options')}
                                     />
-                                </div>
+                                    <div className={styles['item-appearance']}>
+                                        <MultiAppearanceIcon
+                                            value={item.icons}
+                                            formData={{ entity: item.entity }}
+                                            onChange={icons => {
+                                                replace(index, {
+                                                    ...item,
+                                                    icons,
+                                                });
+                                            }}
+                                        />
+                                    </div>
+                                </>
                             ) : (
                                 <div className={styles['item-appearance']}>
                                     <AppearanceIcon

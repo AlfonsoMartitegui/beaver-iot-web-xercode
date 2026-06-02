@@ -11,6 +11,22 @@ import { RenderView } from '../../plugin/render';
 import type { BoardPluginProps } from '../../plugin/types';
 import { DrawingBoardContext } from '../../context';
 
+const BORDERED_WIDGET_TYPES = new Set([
+    'dataCard',
+    'multiDataCard',
+    'statusCard',
+    'progress',
+    'iconRemaining',
+    'barChart',
+    'lineChart',
+    'areaChart',
+    'horizonBarChart',
+    'pieChart',
+    'radarChart',
+    'gaugeChart',
+    'text',
+]);
+
 interface WidgetProps {
     data: WidgetDetail;
     isEdit: boolean;
@@ -38,9 +54,10 @@ const Widget = (props: WidgetProps) => {
     const widgetCls = useMemo(() => {
         return classnames('drawing-board__widget', {
             'drawing-board__widget-editing': isEdit,
+            'drawing-board__widget-bordered': BORDERED_WIDGET_TYPES.has(data.data.type),
             'none-user-select': isEdit,
         });
-    }, [isEdit]);
+    }, [data.data.type, isEdit]);
 
     return (
         <div className={widgetCls}>

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { type CSSProperties, useCallback, useEffect, useMemo, useState } from 'react';
 import { useRequest } from 'ahooks';
 import { get } from 'lodash-es';
 import cls from 'classnames';
@@ -39,6 +39,16 @@ type DisplayData = {
     label?: string;
     icon?: string;
     color?: string;
+    showStatusOptions?: boolean;
+    statusOptions?: StatusOption[];
+};
+
+type StatusOption = {
+    key: string;
+    label: string;
+    icon?: string;
+    color?: string;
+    active: boolean;
 };
 
 type FormatConfig = {
@@ -51,6 +61,7 @@ type FormatConfig = {
     trueAppearanceIcon?: { icon?: string; color?: string };
     useBooleanDefaultLabel?: boolean;
     showUnavailableValue?: boolean;
+    showStatusOptions?: boolean;
 };
 
 const getBooleanStatus = (value: unknown) => {
@@ -162,6 +173,12 @@ const View = (props: ViewProps) => {
 
             if (valueType === 'BOOLEAN') {
                 const statusValue = getBooleanStatus(rawValue);
+                const activeKey =
+                    rawValue === undefined || rawValue === null
+                        ? undefined
+                        : statusValue
+                          ? 'true'
+                          : 'false';
                 const customLabel = statusValue
                     ? itemConfig.trueStatusLabel
                     : itemConfig.falseStatusLabel;
@@ -190,6 +207,23 @@ const View = (props: ViewProps) => {
                     title,
                     label,
                     ...appearance,
+                    showStatusOptions: itemConfig.showStatusOptions,
+                    statusOptions: [
+                        {
+                            key: 'false',
+                            label: itemConfig.falseStatusLabel || getIntlText('common.label.false'),
+                            icon: itemConfig.falseAppearanceIcon?.icon,
+                            color: itemConfig.falseAppearanceIcon?.color,
+                            active: activeKey === 'false',
+                        },
+                        {
+                            key: 'true',
+                            label: itemConfig.trueStatusLabel || getIntlText('common.label.true'),
+                            icon: itemConfig.trueAppearanceIcon?.icon,
+                            color: itemConfig.trueAppearanceIcon?.color,
+                            active: activeKey === 'true',
+                        },
+                    ],
                 };
             }
 
@@ -211,6 +245,14 @@ const View = (props: ViewProps) => {
                     label,
                     icon: get(itemConfig.icons, `${value}.icon`) as string | undefined,
                     color: get(itemConfig.icons, `${value}.color`) as string | undefined,
+                    showStatusOptions: itemConfig.showStatusOptions,
+                    statusOptions: Object.keys(enumStruct).map(enumKey => ({
+                        key: enumKey,
+                        label: enumStruct[enumKey],
+                        icon: get(itemConfig.icons, `${enumKey}.icon`) as string | undefined,
+                        color: get(itemConfig.icons, `${enumKey}.color`) as string | undefined,
+                        active: enumKey === currentKey,
+                    })),
                 };
             }
 
@@ -301,6 +343,62 @@ const View = (props: ViewProps) => {
     };
 
     const renderExtraItem = (item: DisplayData, className?: string) => {
+        const showStatusOptions = item.showStatusOptions && Boolean(item.statusOptions?.length);
+
+        if (showStatusOptions) {
+            return (
+                <div
+                    className={cls(
+                        'multi-data-card-view-card__extra-item',
+                        'multi-data-card-view-card__extra-item--status-options',
+                        className,
+                    )}
+                    key={item.id}
+                >
+                    <div className="multi-data-card-view-card__status-options">
+                        {item.statusOptions?.map(option => {
+                            const Icon = getIconComponent(option.icon);
+                            const optionColor =
+                                option.color || getCSSVariableValue('--text-color-secondary');
+
+                            return (
+                                <div
+                                    className={cls('multi-data-card-view-card__status-option', {
+                                        'multi-data-card-view-card__status-option--active':
+                                            option.active,
+                                    })}
+                                    style={
+                                        {
+                                            '--status-option-color': optionColor,
+                                        } as CSSProperties
+                                    }
+                                    key={option.key}
+                                >
+                                    {Icon && showIconWidth && (
+                                        <Icon
+                                            sx={{
+                                                color: option.active
+                                                    ? optionColor
+                                                    : getCSSVariableValue(
+                                                          '--icon-color-gray-secondary',
+                                                      ),
+                                                fontSize: 14,
+                                            }}
+                                        />
+                                    )}
+                                    <Tooltip
+                                        className="multi-data-card-view-card__status-option-label"
+                                        autoEllipsis
+                                        title={option.label}
+                                    />
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div
                 className={cls('multi-data-card-view-card__extra-item', className)}

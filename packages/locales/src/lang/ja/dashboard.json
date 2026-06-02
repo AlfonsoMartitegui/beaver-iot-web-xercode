@@ -14,6 +14,7 @@
     "dashboard.label.false_status_label": "False ステータスラベル",
     "dashboard.label.false_led_color": "False LED 色",
     "dashboard.label.show_led_indicator": "LED インジケーターを表示",
+    "dashboard.label.show_status_options": "ステータスオプションを表示",
     "dashboard.label.true_status_appearance": "True ステータスの表示設定",
     "dashboard.label.true_status_label": "True ステータスラベル",
     "dashboard.label.true_led_color": "True LED 色",

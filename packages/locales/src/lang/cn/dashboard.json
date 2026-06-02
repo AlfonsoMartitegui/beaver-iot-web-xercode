@@ -14,6 +14,7 @@
     "dashboard.label.false_status_label": "False 状态标签",
     "dashboard.label.false_led_color": "False LED 颜色",
     "dashboard.label.show_led_indicator": "显示 LED 指示器",
+    "dashboard.label.show_status_options": "显示状态选项",
     "dashboard.label.true_status_appearance": "True 状态外观",
     "dashboard.label.true_status_label": "True 状态标签",
     "dashboard.label.true_led_color": "True LED 颜色",

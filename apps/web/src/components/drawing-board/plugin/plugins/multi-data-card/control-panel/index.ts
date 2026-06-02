@@ -39,7 +39,7 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
         minRow: 1,
         minCol: 2,
         maxRow: 4,
-        maxCol: 6,
+        maxCol: 4,
         configProps: [
             {
                 label: 'Multi Data Card Config',
