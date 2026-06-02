@@ -6,7 +6,7 @@ import IconList from './icon-list';
 import './style.less';
 
 const IconSelect = (props: any) => {
-    const { value, onChange, ...rest } = props;
+    const { value, onChange, allowEmptyIcon, ...rest } = props;
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => setOpen(true);
@@ -44,6 +44,7 @@ const IconSelect = (props: any) => {
                 return (
                     <MenuItem onClick={handleOpen} className="icon-select-menu" value={value}>
                         <IconList
+                            allowEmptyIcon={allowEmptyIcon}
                             onChange={handleColorChange}
                             options={options}
                             value={value}

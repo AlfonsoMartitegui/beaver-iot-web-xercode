@@ -44,6 +44,8 @@ export interface MultiDataCardExtraItemsProps {
     entityValueType?: EntityValueDataType[];
     entityAccessMod?: EntityAccessMode[];
     excludeChildren?: boolean;
+    allowEmptyIcon?: boolean;
+    showStatusOptionsControl?: boolean;
     maxCount?: number;
 }
 
@@ -70,6 +72,8 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
     entityValueType,
     entityAccessMod,
     excludeChildren,
+    allowEmptyIcon,
+    showStatusOptionsControl = true,
     maxCount = 10,
     ...props
 }) => {
@@ -165,21 +169,25 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
                             />
                             {isBoolean ? (
                                 <>
-                                    <FormControlLabel
-                                        sx={{ width: '100%', marginBottom: 2 }}
-                                        control={
-                                            <Switch
-                                                checked={Boolean(item.showStatusOptions)}
-                                                onChange={(_, showStatusOptions) => {
-                                                    replace(index, {
-                                                        ...item,
-                                                        showStatusOptions,
-                                                    });
-                                                }}
-                                            />
-                                        }
-                                        label={getIntlText('dashboard.label.show_status_options')}
-                                    />
+                                    {showStatusOptionsControl && (
+                                        <FormControlLabel
+                                            sx={{ width: '100%', marginBottom: 2 }}
+                                            control={
+                                                <Switch
+                                                    checked={Boolean(item.showStatusOptions)}
+                                                    onChange={(_, showStatusOptions) => {
+                                                        replace(index, {
+                                                            ...item,
+                                                            showStatusOptions,
+                                                        });
+                                                    }}
+                                                />
+                                            }
+                                            label={getIntlText(
+                                                'dashboard.label.show_status_options',
+                                            )}
+                                        />
+                                    )}
                                     <div className={styles['item-fields']}>
                                         <Input
                                             label={getIntlText(
@@ -226,6 +234,7 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
                                                 'dashboard.label.false_status_appearance',
                                             )}
                                             value={item.falseAppearanceIcon}
+                                            allowEmptyIcon={allowEmptyIcon}
                                             onChange={falseAppearanceIcon => {
                                                 replace(index, {
                                                     ...item,
@@ -238,6 +247,7 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
                                                 'dashboard.label.true_status_appearance',
                                             )}
                                             value={item.trueAppearanceIcon}
+                                            allowEmptyIcon={allowEmptyIcon}
                                             onChange={trueAppearanceIcon => {
                                                 replace(index, {
                                                     ...item,
@@ -249,25 +259,30 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
                                 </>
                             ) : isEnum ? (
                                 <>
-                                    <FormControlLabel
-                                        sx={{ width: '100%', marginBottom: 2 }}
-                                        control={
-                                            <Switch
-                                                checked={Boolean(item.showStatusOptions)}
-                                                onChange={(_, showStatusOptions) => {
-                                                    replace(index, {
-                                                        ...item,
-                                                        showStatusOptions,
-                                                    });
-                                                }}
-                                            />
-                                        }
-                                        label={getIntlText('dashboard.label.show_status_options')}
-                                    />
+                                    {showStatusOptionsControl && (
+                                        <FormControlLabel
+                                            sx={{ width: '100%', marginBottom: 2 }}
+                                            control={
+                                                <Switch
+                                                    checked={Boolean(item.showStatusOptions)}
+                                                    onChange={(_, showStatusOptions) => {
+                                                        replace(index, {
+                                                            ...item,
+                                                            showStatusOptions,
+                                                        });
+                                                    }}
+                                                />
+                                            }
+                                            label={getIntlText(
+                                                'dashboard.label.show_status_options',
+                                            )}
+                                        />
+                                    )}
                                     <div className={styles['item-appearance']}>
                                         <MultiAppearanceIcon
                                             value={item.icons}
                                             formData={{ entity: item.entity }}
+                                            allowEmptyIcon={allowEmptyIcon}
                                             onChange={icons => {
                                                 replace(index, {
                                                     ...item,
@@ -282,6 +297,7 @@ const MultiDataCardExtraItems: React.FC<MultiDataCardExtraItemsProps> = ({
                                     <AppearanceIcon
                                         label={getIntlText('common.label.appearance')}
                                         value={item.appearanceIcon}
+                                        allowEmptyIcon={allowEmptyIcon}
                                         onChange={appearanceIcon => {
                                             replace(index, {
                                                 ...item,

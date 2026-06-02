@@ -326,15 +326,28 @@ const View = (props: ViewProps) => {
     const visibleExtraData = extraData.slice(0, visibleExtraCount);
     const hiddenExtraCount = Math.max(extraData.length - visibleExtraCount, 0);
 
-    const renderIcon = (data: DisplayData, size: number) => {
+    const renderIcon = (data: DisplayData, size: number, showBackground = false) => {
         const Icon = getIconComponent(data.icon);
         if (!Icon || !showIconWidth) return null;
 
+        const iconColor = data.color || getCSSVariableValue('--gray-5');
+
         return (
-            <div className="multi-data-card-view-card__icon">
+            <div
+                className={cls('multi-data-card-view-card__icon', {
+                    'multi-data-card-view-card__icon--main': showBackground,
+                })}
+                style={
+                    showBackground
+                        ? {
+                              backgroundColor: `color-mix(in srgb, ${iconColor} 14%, transparent)`,
+                          }
+                        : undefined
+                }
+            >
                 <Icon
                     sx={{
-                        color: data.color || getCSSVariableValue('--gray-5'),
+                        color: iconColor,
                         fontSize: size,
                     }}
                 />
@@ -448,7 +461,7 @@ const View = (props: ViewProps) => {
                             />
                         </div>
                         <div className="multi-data-card-view-card__body">
-                            {renderIcon(mainData, hGrid > 1 ? 32 : 24)}
+                            {renderIcon(mainData, hGrid > 1 ? 32 : 24, hGrid > 1)}
                             <div
                                 className={cls('multi-data-card-view-card__data', {
                                     'text-lg': wGrid > 1 && hGrid > 1,

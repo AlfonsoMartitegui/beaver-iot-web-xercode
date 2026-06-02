@@ -1,48 +1,72 @@
 import { t } from '@milesight/shared/src/utils/tools';
 
 import type {
-    BaseControlConfig,
     ControlPanelConfig,
+    BaseControlConfig,
 } from '@/components/drawing-board/plugin/types';
-import type {
-    AppearanceIconValue,
-    MultiDataCardExtraItem,
-} from '@/components/drawing-board/plugin/components';
-import MultiDataCardIcon from '../icon.svg';
+import type { AppearanceIconValue } from '@/components/drawing-board/plugin/components';
+import ToggleButtonIcon from '../icon.svg';
 
-export interface MultiDataCardControlPanelConfig {
+const DEFAULT_FALSE_APPEARANCE: AppearanceIconValue = {
+    icon: 'IotSwitchOffIcon',
+    color: '#9B9B9B',
+};
+const DEFAULT_TRUE_APPEARANCE: AppearanceIconValue = {
+    icon: 'IotSwitchOnIcon',
+    color: '#334E9D',
+};
+
+export interface ToggleButtonControlPanelConfig {
     entity?: EntityOptionType;
     title?: string;
-    icons?: Record<string, AppearanceIconValue>;
-    falseStatusLabel?: string;
-    trueStatusLabel?: string;
+    falseLabel?: string;
+    trueLabel?: string;
     falseAppearanceIcon?: AppearanceIconValue;
     trueAppearanceIcon?: AppearanceIconValue;
-    extraItems?: MultiDataCardExtraItem[];
+    /** @deprecated Use trueAppearanceIcon instead. */
+    onAppearanceIcon?: AppearanceIconValue;
+    /** @deprecated Use falseAppearanceIcon instead. */
+    offAppearanceIcon?: AppearanceIconValue;
 }
 
-const isBooleanEntity = (entity?: EntityOptionType) => {
-    return entity?.rawData?.entityValueType === 'BOOLEAN' || entity?.valueType === 'BOOLEAN';
+const migrateLegacyConfig = (
+    update: (newData: Partial<ToggleButtonControlPanelConfig>) => void,
+    formData?: ToggleButtonControlPanelConfig,
+) => {
+    if (!formData) return;
+
+    const newData: Partial<ToggleButtonControlPanelConfig> = {};
+
+    if (!formData.falseAppearanceIcon && formData.offAppearanceIcon) {
+        newData.falseAppearanceIcon = formData.offAppearanceIcon;
+    }
+    if (!formData.trueAppearanceIcon && formData.onAppearanceIcon) {
+        newData.trueAppearanceIcon = formData.onAppearanceIcon;
+    }
+
+    if (Object.keys(newData).length) {
+        update(newData);
+    }
 };
 
 /**
- * The multi data card Control Panel Config
+ * The toggle button Control Panel Config
  */
-const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardControlPanelConfig> => {
+const toggleButtonControlPanelConfig = (): ControlPanelConfig<ToggleButtonControlPanelConfig> => {
     return {
-        class: 'data_card',
-        type: 'multiDataCard',
-        name: 'dashboard.plugin_name_multi_data_card',
-        icon: MultiDataCardIcon,
-        defaultRow: 2,
-        defaultCol: 3,
+        class: 'operate',
+        type: 'toggleButton',
+        name: 'dashboard.plugin_name_toggle_button',
+        icon: ToggleButtonIcon,
+        defaultRow: 1,
+        defaultCol: 2,
         minRow: 1,
-        minCol: 2,
-        maxRow: 4,
-        maxCol: 6,
+        minCol: 1,
+        maxRow: 1,
+        maxCol: 4,
         configProps: [
             {
-                label: 'Multi Data Card Config',
+                label: 'Toggle Button Config',
                 controlSetItems: [
                     {
                         name: 'entitySelect',
@@ -55,11 +79,13 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
                                     required: true,
                                 },
                             },
+                            setValuesToFormConfig: migrateLegacyConfig,
                             componentProps: {
                                 required: true,
                                 entityType: ['PROPERTY'],
-                                entityValueType: ['STRING', 'LONG', 'DOUBLE', 'BOOLEAN'],
-                                entityAccessMod: ['R', 'RW'],
+                                entityValueType: ['BOOLEAN'],
+                                entityAccessMod: ['W', 'RW'],
+                                excludeChildren: true,
                             },
                         },
                     },
@@ -70,7 +96,7 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
                             label: t('common.label.title'),
                             controllerProps: {
                                 name: 'title',
-                                defaultValue: t('dashboard.plugin_name_multi_data_card'),
+                                defaultValue: t('dashboard.plugin_name_toggle_button'),
                                 rules: {
                                     maxLength: 35,
                                 },
@@ -78,36 +104,30 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
                         },
                     },
                     {
-                        name: 'falseStatusLabelInput',
+                        name: 'falseLabelInput',
                         config: {
                             type: 'Input',
                             label: t('dashboard.label.false_status_label'),
                             controllerProps: {
-                                name: 'falseStatusLabel',
+                                name: 'falseLabel',
                                 defaultValue: '',
                                 rules: {
                                     maxLength: 35,
                                 },
-                            },
-                            visibility(formData) {
-                                return isBooleanEntity(formData?.entity);
                             },
                         },
                     },
                     {
-                        name: 'trueStatusLabelInput',
+                        name: 'trueLabelInput',
                         config: {
                             type: 'Input',
                             label: t('dashboard.label.true_status_label'),
                             controllerProps: {
-                                name: 'trueStatusLabel',
+                                name: 'trueLabel',
                                 defaultValue: '',
                                 rules: {
                                     maxLength: 35,
                                 },
-                            },
-                            visibility(formData) {
-                                return isBooleanEntity(formData?.entity);
                             },
                         },
                     },
@@ -120,10 +140,22 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
                                 name: 'falseAppearanceIcon',
                             },
                             componentProps: {
+                                defaultValue: DEFAULT_FALSE_APPEARANCE,
                                 allowEmptyIcon: true,
                             },
-                            visibility(formData) {
-                                return isBooleanEntity(formData?.entity);
+                            mapStateToProps(oldConfig, formData) {
+                                const { componentProps, ...restConfig } = oldConfig || {};
+                                return {
+                                    ...restConfig,
+                                    componentProps: {
+                                        ...componentProps,
+                                        defaultValue:
+                                            formData?.falseAppearanceIcon ||
+                                            formData?.offAppearanceIcon ||
+                                            DEFAULT_FALSE_APPEARANCE,
+                                        formData,
+                                    },
+                                } as BaseControlConfig<ToggleButtonControlPanelConfig>;
                             },
                         },
                     },
@@ -136,24 +168,8 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
                                 name: 'trueAppearanceIcon',
                             },
                             componentProps: {
+                                defaultValue: DEFAULT_TRUE_APPEARANCE,
                                 allowEmptyIcon: true,
-                            },
-                            visibility(formData) {
-                                return isBooleanEntity(formData?.entity);
-                            },
-                        },
-                    },
-                    {
-                        name: 'multiAppearanceIcon',
-                        config: {
-                            type: 'MultiAppearanceIcon',
-                            controllerProps: {
-                                name: 'icons',
-                            },
-                            visibility(formData) {
-                                return (
-                                    Boolean(formData?.entity) && !isBooleanEntity(formData?.entity)
-                                );
                             },
                             mapStateToProps(oldConfig, formData) {
                                 const { componentProps, ...restConfig } = oldConfig || {};
@@ -161,35 +177,13 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
                                     ...restConfig,
                                     componentProps: {
                                         ...componentProps,
-                                        allowEmptyIcon: true,
+                                        defaultValue:
+                                            formData?.trueAppearanceIcon ||
+                                            formData?.onAppearanceIcon ||
+                                            DEFAULT_TRUE_APPEARANCE,
                                         formData,
                                     },
-                                } as BaseControlConfig<MultiDataCardControlPanelConfig>;
-                            },
-                        },
-                    },
-                    {
-                        name: 'extraItems',
-                        config: {
-                            type: 'MultiDataCardExtraItems',
-                            controllerProps: {
-                                name: 'extraItems',
-                                defaultValue: [],
-                            },
-                            componentProps: {
-                                allowEmptyIcon: true,
-                                maxCount: 10,
-                                entityType: ['PROPERTY' as EntityType],
-                                entityValueType: [
-                                    'STRING' as EntityValueDataType,
-                                    'LONG' as EntityValueDataType,
-                                    'DOUBLE' as EntityValueDataType,
-                                    'BOOLEAN' as EntityValueDataType,
-                                ],
-                                entityAccessMod: [
-                                    'R' as EntityAccessMode,
-                                    'RW' as EntityAccessMode,
-                                ],
+                                } as BaseControlConfig<ToggleButtonControlPanelConfig>;
                             },
                         },
                     },
@@ -199,4 +193,4 @@ const multiDataCardControlPanelConfig = (): ControlPanelConfig<MultiDataCardCont
     };
 };
 
-export default multiDataCardControlPanelConfig;
+export default toggleButtonControlPanelConfig;

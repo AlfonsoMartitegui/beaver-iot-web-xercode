@@ -2,16 +2,19 @@ import { useState, useEffect } from 'react';
 import { OutlinedInput, InputAdornment, Tooltip } from '@mui/material';
 import * as Icons from '@milesight/shared/src/components/icons';
 import { PerfectScrollbar } from '@milesight/shared/src/components';
+import { useI18n } from '@milesight/shared/src/hooks';
 
 interface IconListProps {
     options: OptionsProps[];
     onChange: (value?: string | number) => void;
     isShow: boolean;
     value?: string;
+    allowEmptyIcon?: boolean;
 }
 
 const IconList = (props: IconListProps) => {
-    const { options, onChange, isShow, value } = props;
+    const { options, onChange, isShow, value, allowEmptyIcon } = props;
+    const { getIntlText } = useI18n();
     const [searchValue, setSearchValue] = useState('');
 
     const filterOptions = () => {
@@ -46,6 +49,18 @@ const IconList = (props: IconListProps) => {
             </div>
             <PerfectScrollbar className="icon-select-list-container">
                 <div className="icon-select-list-main">
+                    {allowEmptyIcon && (
+                        <Tooltip title={getIntlText('common.label.no_icon')}>
+                            <span
+                                className={`icon-select-icon icon-select-icon-empty ${
+                                    !value ? 'icon-select-icon-active' : ''
+                                }`}
+                                onClick={() => onChange('')}
+                            >
+                                <Icons.CloseIcon className="icon-select-icon-img" />
+                            </span>
+                        </Tooltip>
+                    )}
                     {filterOptions().map((option: OptionsProps) => {
                         const IconTag: any = (Icons as any)[option.label as string];
                         return (

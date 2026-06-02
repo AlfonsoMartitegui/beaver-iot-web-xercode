@@ -12,6 +12,7 @@ export interface MultiAppearanceIconProps {
     value?: Record<string, AppearanceIconValue>;
     onChange?: (value: Record<string, AppearanceIconValue>) => void;
     formData?: AnyDict;
+    allowEmptyIcon?: boolean;
     iconSelectProps?: SelectProps;
     iconSelectColorProps?: IconColorSelectProps;
 }
@@ -20,7 +21,7 @@ export interface MultiAppearanceIconProps {
  * Multiple icon and it's color render by entity enum data
  */
 const MultiAppearanceIcon: React.FC<MultiAppearanceIconProps> = props => {
-    const { formData, iconSelectProps, iconSelectColorProps } = props;
+    const { formData, allowEmptyIcon, iconSelectProps, iconSelectColorProps } = props;
 
     const [value, setValue] = useControllableValue<Record<string, AppearanceIconValue>>(props);
 
@@ -71,6 +72,7 @@ const MultiAppearanceIcon: React.FC<MultiAppearanceIconProps> = props => {
                 }
                 iconSelectProps={iconSelectProps}
                 iconSelectColorProps={iconSelectColorProps}
+                allowEmptyIcon={allowEmptyIcon}
             />
         );
     }
@@ -95,6 +97,7 @@ const MultiAppearanceIcon: React.FC<MultiAppearanceIconProps> = props => {
                 }
                 iconSelectProps={iconSelectProps}
                 iconSelectColorProps={iconSelectColorProps}
+                allowEmptyIcon={allowEmptyIcon}
             />
         );
     });

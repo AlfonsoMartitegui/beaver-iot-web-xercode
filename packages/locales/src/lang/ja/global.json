@@ -121,6 +121,7 @@
     "common.label.name": "名前",
     "common.label.never_seen": "未確認",
     "common.label.no_device_entity": "デバイスに紐づいていないエンティティ",
+    "common.label.no_icon": "アイコンなし",
     "common.label.no_more_data": "デバイスがもうありません",
     "common.label.no_options": "利用可能なアイテムがありません",
     "common.label.no_permissions": "権限がありません",

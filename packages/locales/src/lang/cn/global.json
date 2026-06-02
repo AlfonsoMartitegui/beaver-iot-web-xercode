@@ -121,6 +121,7 @@
     "common.label.name": "名称",
     "common.label.never_seen": "未连接",
     "common.label.no_device_entity": "无设备归属实体",
+    "common.label.no_icon": "无图标",
     "common.label.no_more_data": "无更多设备",
     "common.label.no_options": "无可用项",
     "common.label.no_permissions": "无权限",

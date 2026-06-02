@@ -121,6 +121,7 @@
     "common.label.name": "Name",
     "common.label.never_seen": "NeverSeen",
     "common.label.no_device_entity": "Entities with No Device",
+    "common.label.no_icon": "No icon",
     "common.label.no_more_data": "No more devices",
     "common.label.no_options": "No available items",
     "common.label.no_permissions": "No Permissions",

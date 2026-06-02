@@ -30,6 +30,7 @@ export interface AppearanceIconProps {
      * Default component value
      */
     defaultValue?: AppearanceIconValue;
+    allowEmptyIcon?: boolean;
     label?: ReactNode;
     iconSelectProps?: SelectProps;
     iconSelectColorProps?: IconColorSelectProps;
@@ -47,6 +48,7 @@ const AppearanceIcon: React.FC<AppearanceIconProps> = props => {
         legacyIconKey,
         legacyColorKey,
         defaultValue,
+        allowEmptyIcon,
     } = props;
 
     const [value, setValue] = useControllableValue<AppearanceIconValue>(props);
@@ -57,10 +59,11 @@ const AppearanceIcon: React.FC<AppearanceIconProps> = props => {
                 <div className="appearance-icon__label">{label}</div>
                 <IconSelect
                     {...iconSelectProps}
+                    allowEmptyIcon={allowEmptyIcon}
                     value={
-                        value?.icon ||
-                        get(formData, legacyIconKey || '') ||
-                        defaultValue?.icon ||
+                        value?.icon ??
+                        get(formData, legacyIconKey || '') ??
+                        defaultValue?.icon ??
                         ''
                     }
                     onChange={(icon: string) => {
